@@ -5,7 +5,7 @@ Auxiliar: Mariana Sic
  Junio 2022
 
 ## Descripción del Proyecto
-El Proyecto No. 2 consiste en la creación de un Graficador, basado en los conceptos de Data Science.  
+El Proyecto No. 2 consiste en la creación de un Graficador, basado en los conceptos de Data Science. Cuenta con las siguientes funcionalidades:
 ### Regresion Lineal:
 La función del Interprete será realizar: 
 - Análisis Léxico
