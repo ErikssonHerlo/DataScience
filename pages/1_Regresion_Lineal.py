@@ -6,7 +6,7 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.metrics import mean_squared_error, r2_score
-from PIL import Image
+
 
 st.title("Regresión Lineal")
 st.write("""
