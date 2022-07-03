@@ -30,6 +30,6 @@ Auxiliar: Mariana Sic
  Junio 2022
 """)
 st.sidebar.markdown("ErikssonHerlo on "+
-    '<a href="https://github.com/ErikssonHerlo" target="_self">GitHub</a>', unsafe_allow_html=True)
+    '<a href="https://github.com/ErikssonHerlo/DataScience" target="_blank">GitHub</a>', unsafe_allow_html=True)
 
 
