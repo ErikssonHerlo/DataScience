@@ -53,7 +53,7 @@ if(uploadFile is not None):
     st.markdown("#### Variable Dependiente (Y)")
     var_Y = st.selectbox("Por favor elija una opción", df.keys(), key="variableY")
     st.markdown("#### Valor de la Predicción")
-    predValue = st.number_input("Ingrese el valor de la Predicción")
+    predValue = st.number_input("Ingrese el valor de la Predicción",None,None,0,1)
     st.markdown("#### Colores de la Gráfica")
     col1, col2 = st.columns(2)
     with col1:
@@ -70,6 +70,8 @@ if(uploadFile is not None):
     regr.fit(x, y)
     y_pred = regr.predict(x)
     r2 = r2_score(y, y_pred)
+    errorCuadratico = mean_squared_error(y, y_pred)
+
     predict = regr.predict([[predValue]])
 
     #Graficacion
@@ -104,7 +106,7 @@ if(uploadFile is not None):
         
         col3, col4 = st.columns(2)
         col3.metric("Coeficiente de Determinación",r2)
-        col4.metric("Error Cuadrático", mean_squared_error(y, y_pred))
+        col4.metric("Error Cuadrático",errorCuadratico)
         
         st.subheader("Función de la Tendencia")
         
