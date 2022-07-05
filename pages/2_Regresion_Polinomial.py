@@ -35,7 +35,7 @@ Esto hace que sea una forma agradable y directa de modelar curvas sin tener que 
 
 st.subheader("Carga del Archivo")
 st.write("""
-Para realizar un análisis de regresión líneal, es necesario cargar un archivo de datos, con un formato específico. Estos pueden ser archivos con extensiones: csv, xls,xlsx o json.
+Para realizar un análisis de regresión polinomial, es necesario cargar un archivo de datos, con un formato específico. Estos pueden ser archivos con extensiones: csv, xls,xlsx o json.
 """)
 
 uploadFile = st.file_uploader("Elija un archivo", type=['csv', 'xls', 'xlsx', 'json'])
@@ -137,7 +137,7 @@ if(uploadFile is not None):
         
         col3, col4 = st.columns(2)
         col3.metric("Coeficiente de Determinación",r2)
-        col4.metric("Error Cuadrático", errorCuadratico )
+        col4.metric("Error Cuadrático Medio", rmse)
         
         st.subheader("Función de la Tendencia")
         
