@@ -5,26 +5,68 @@ Auxiliar: Mariana Sic
  Junio 2022
 
 ## Descripción del Proyecto
-El Proyecto No. 2 consiste en la creación de un Graficador, basado en los conceptos de Data Science. Cuenta con las siguientes funcionalidades:
-### Regresion Lineal:
-La función del Interprete será realizar: 
-- Análisis Léxico
-- Análisis Sintáctico
-- Análisis Semántico
-- Ejecución de las Instrucciones
-- Reporte de Errores 
-- Reporte de Tabla de Simbolos
-- Reporte de AST (Abstract Syntax Tree)
-- Reporte de CST (Concret Syntax Tree)
+El Proyecto No. 2 consiste en la creación de un Graficador, basado en los conceptos de Data Science. Cuenta con los siguientes algoritmos y sus funcionalidades:
+### Regresión Lineal: 
+- Carga del Archivo
+    - Contenido del Archivo 
+- Parametrización
+    - Variable Independiente (X)
+    - Variable Dependiente (Y)
+    - Valor de la Predicción 
+    - Colores de la Gráfica
+- Graficación
+    - Datos de la Gráfica
+- Función de la Tendencia
+- Predicción
 
 ### Regresion Polinomial
-#### Generacion de Codigo Intermedio
-La generación de código intermedio corresponde a una de las fases del compilador, por lo que para este proyecto se solicita que el estudiante genere código en tres direcciones que sea equivalente al código de alto nivel.
-El código de tres direcciones será en C, debe ser ejecutado en la misma aplicación mostrando su resultado en una caja de texto el resultado de consola.
+- Carga del Archivo
+    - Contenido del Archivo 
+- Parametrización
+    - Variable Independiente (X)
+    - Variable Dependiente (Y)
+    - Grado de la Función
+    - Valor de la Predicción 
+    - Colores de la Gráfica
+- Graficación
+    - Datos de la Gráfica
+- Función de la Tendencia
+- Predicción
 
-La función del Traductor será realizar:
-- Traducción del Codigo en 3 Direcciones
+### Clasificador Gaussiano
+- Carga del Archivo
+    - Contenido del Archivo 
+- Parametrización
+    - Variable Objetivo
+    - Valor de la Predicción 
+- Visualización de las Tuplas
+- Predicción
+
+### Clasificador de Árboles de Decisión
+- Carga del Archivo
+    - Contenido del Archivo 
+- Parametrización
+    - Variable Objetivo
+    - Valor de la Predicción 
+- Visualización de las Tuplas
+- Graficación
+- Predicción
+
+### Redes Neuronales
+- Carga del Archivo
+    - Contenido del Archivo 
+- Parametrización
+    - Variable Objetivo
+    - Valor de las Capas
+    - Cantidad de Iteraciones
+    - Valor de la Predicción 
+- Visualización de las Tuplas
+- Predicción
 
 ## Herramientas Utilizadas
 - Python _Version 3.8.10_
 - Streamlit _Version 1.10.0_
+
+## Despliegue de la Aplicación
+La aplicación se encuentra desplegada en el siguiente enlace:
+[DataScience App](https://erikssonherlo-datascience-pagina-inicio-fx20bt.streamlitapp.com/)

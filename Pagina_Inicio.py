@@ -19,7 +19,30 @@ La ciencia de datos revela tendencias y genera información que las empresas pue
 Los datos son los cimientos de la innovación, pero su valor proviene de la información que los científicos de datos pueden extraer de ellos y luego utilizar.
 """)
 st.subheader("Aplicación")
-st.write("Por ende, esta aplicación esta construida con la finalidad de visualizar las distintas aplicaciones que tiene la Ciencia de Datos.")
+st.write("Por ende, esta aplicación esta construida con la finalidad de visualizar las distintas aplicaciones que tiene la Ciencia de Datos. Por ello cuenta con los siguientes algoritmos y operaciones:")
+st.markdown("#### Algoritmos")
+st.markdown("""
+- Regresión Lineal
+- Regresión Polinomial
+- Clasificador Gaussiano
+- Clasificador de Árboles de Decisión
+- Redes Neuronales
+""")
+st.markdown("#### Operaciones")
+st.markdown("""
+- Graficación puntos
+- Definición de función de tendencia lineal
+- Definición de función de tendencia polinomial
+- Predicción de la tendencia (según la unidad de tiempo ingresada)
+- Clasificación por:
+    - Gauss
+    - Árboles de Decisión
+    - Redes Neuronales
+""")
+
+
+
+
 
 st.sidebar.title("Bienvenidos")
 
