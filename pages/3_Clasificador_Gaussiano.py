@@ -69,9 +69,8 @@ if(uploadFile is not None):
     
     st.markdown("#### Valor de la Predicción")
     predValues = st.text_input(f"Ingrese los {size} valores de la predicción seguidos de una coma")
-   
     #Transformar Data a Array
-    field_y = df[var_Object]
+    field_y = df[var_Object].tolist()
     df = df.drop([var_Object], axis = 1)
     col_match = [s for s in df.head() if "NO" in s]
     if len(col_match) == 1: df = df.drop(['NO'], axis = 1)
@@ -81,7 +80,7 @@ if(uploadFile is not None):
     le = preprocessing.LabelEncoder()
     headers = df.head()
     columns = headers.columns
-
+    
     # Construccion de las tuplas
     for col in columns:
         col_list = df[col].tolist()
@@ -95,27 +94,36 @@ if(uploadFile is not None):
 
     # Agregamos el arreglo de tuplas a la lista
     features = list(zip(*fields_x))
-
+    label = le.fit_transform(field_y)
     #Entrenamos el modelo
     model = GaussianNB()
-    model.fit(features, field_y)
+    model.fit(features, label)
+   
+   
 
     
 
     #Obtenemos la imagen para mostrarla
     
     if st.button('Calcular'):
+
         if(predValues != ""):
             arrayValues = predValues.split(',')
+            #le2 = preprocessing.LabelEncoder()
+            arrayValues = le.fit_transform(arrayValues)
+              
+            #print(arrayValues)
+            #arrayIntValues = list(map(int, arrayValues))
+            print("ARRAY VALUES")
             print(arrayValues)
-            arrayIntValues = list(map(int, arrayValues))
-            print(arrayIntValues)
-            if(len(arrayIntValues) == size):
+            if(len(arrayValues) == size):
                 st.subheader("Visualización de las Tuplas")
                 st.dataframe(features)
                 st.subheader("Predicción")
                 #Prediccion del Modelo 
-                predict = model.predict([arrayIntValues])
+
+                predict = model.predict([arrayValues])
+                #predict = le.inverse_transform(predict)
                 
                 #predict = model.predict([[10, 10, 300, 0]])
                 st.metric(f"El valor de la predicción para los valores ingresados es de: ",str(predict), getSign(str(predict)))
