@@ -97,7 +97,7 @@ if(uploadFile is not None):
 
     #Entrenamos el modelo
     clf = DecisionTreeClassifier().fit(features,field_y)
-    fig = plt.figure()
+    fig = plt.figure(figsize=(10,10))
     plt.style.use("seaborn")
     plot_tree(clf,filled = True)
     plt.title("Clasificador de Arboles de Decisión")
