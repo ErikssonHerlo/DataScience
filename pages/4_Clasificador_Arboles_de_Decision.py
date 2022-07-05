@@ -33,7 +33,7 @@ Hay tres tipos diferentes de nodos: nodos de probabilidad, nodos de decisión y 
 
 st.subheader("Carga del Archivo")
 st.write("""
-Para realizar un análisis de regresión líneal, es necesario cargar un archivo de datos, con un formato específico. Estos pueden ser archivos con extensiones: csv, xls,xlsx o json.
+Para realizar un análisis de un clasificación de arboles de decisión, es necesario cargar un archivo de datos, con un formato específico. Estos pueden ser archivos con extensiones: csv, xls,xlsx o json.
 """)
 
 uploadFile = st.file_uploader("Elija un archivo", type=['csv', 'xls', 'xlsx', 'json'])
@@ -58,7 +58,7 @@ if(uploadFile is not None):
 
     st.subheader("Parametrización")
     st.write("""
-        Elija las variables que se utilizarán para el análisis del clasificador gaussiano """)
+        Elija las variables que se utilizarán para el análisis del árbol de decisiones """)
     st.markdown("#### Variable Objetivo")
     var_Object = st.selectbox("Por favor elija una opción", df.keys(), key="variableObjetivo")
 
