@@ -12,28 +12,23 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn import preprocessing
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 
-def getOperator(valor: float) -> str:
-    operador = "+ " if valor>=0 else "" 
+def getSign(valor: str) -> str:
+    operador = "+ Positivo" if ('P' in valor) or ('p' in valor) or ('1' in valor)  else "- Negativo" 
     return operador
 
 st.title("Arboles de Decisión")
 st.write("""
-La Regresión Polinomial es un caso especial de la Regresión Lineal, extiende el modelo lineal al agregar predictores adicionales, obtenidos al elevar cada uno de los predictores originales a una potencia. Por ejemplo, una regresión cúbica utiliza tres variables, como predictores. Este enfoque proporciona una forma sencilla de proporcionar un ajuste no lineal a los datos.
+Un árbol de decisión es un modelo de predicción utilizado en diversos ámbitos que van desde la inteligencia artificial hasta la Economía. Dado un conjunto de datos se fabrican diagramas de construcciones lógicas, muy similares a los sistemas de predicción basados en reglas, que sirven para representar y categorizar una serie de condiciones que ocurren de forma sucesiva, para la resolución de un problema. 
 """)
 st.write("""
-El método estándar para extender la Regresión Lineal a una relación no lineal entre las variables dependientes e independientes, ha sido reemplazar el modelo lineal con una función polinomial.
+De forma gráfica, podemos definir un árbol de decisión, como un mapa de los posibles resultados de una serie de decisiones relacionadas. Permite que un individuo o una organización comparen posibles acciones entre sí según sus costos, probabilidades y beneficios. Se pueden usar para dirigir un intercambio de ideas informal o trazar un algoritmo que anticipe matemáticamente la mejor opción.
 """)
 st.write("""
-Por su parte, la ecuación general correspondiente a un modelo de regresión polinomial es:
+Un árbol de decisión, por lo general, comienza con un único nodo y luego se ramifica en resultados posibles. Cada uno de esos resultados crea nodos adicionales, que se ramifican en otras posibilidades. Esto le da una forma similar a la de un árbol.
 """)
-st.latex("Y=β0+β1Xi+βnXi^n+ϵi")
 
 st.write("""
-Como se puede observar para la Regresión Polinomial se crean algunas características adicionales que no se encuentran en la Regresión Lineal.
-
-Un término polinomial, bien sea cuadrático o cúbico, convierte un modelo de regresión lineal en una curva, pero como los datos de “X” son cuadráticos o cúbicos pero el coeficiente “b” no lo es, todavía se califican como un modelo lineal.
-
-Esto hace que sea una forma agradable y directa de modelar curvas sin tener que modelar modelos complicados no lineales.
+Hay tres tipos diferentes de nodos: nodos de probabilidad, nodos de decisión y nodos terminales. Un nodo de probabilidad, representado con un círculo, muestra las probabilidades de ciertos resultados. Un nodo de decisión, representado con un cuadrado, muestra una decisión que se tomará, y un nodo terminal muestra el resultado definitivo de una ruta de decisión.
 """)
 
 st.subheader("Carga del Archivo")
@@ -89,12 +84,12 @@ if(uploadFile is not None):
     # Construccion de las tuplas
     for col in columns:
         col_list = df[col].tolist()
-        print(col_list)
+        #print(col_list)
         col_trans = le.fit_transform(col_list)
-        print(col_trans)
+        #print(col_trans)
         fields_x.append(col_trans)
-        print("---------- ----------")
-    print(fields_x)
+        #print("---------- ----------")
+    #print(fields_x)
 
 
     # Agregamos el arreglo de tuplas a la lista
@@ -113,25 +108,34 @@ if(uploadFile is not None):
     #Prediccion
     
     #predict = model.predict(predValues)
-    predict = clf.predict([[10, 10, 300, 0]])
+    #predict = clf.predict([[10, 10, 300, 0]])
 
     #Obtenemos la imagen para mostrarla
     
     if st.button('Calcular'):
-        
-        #st.subheader("Predicción")
-        #indicadorPrediccion = "+ Positiva" if predict>=0 else "- Negativa"
-        #st.metric(f"El valor de la predicción para los valores ingresados es de: ",str(predict))
-        st.subheader("Graficación")
-        st.pyplot(fig)
-        st.subheader("Predicción")
-        #indicadorPrediccion = "+ Positiva" if predict>=0 else "- Negativa"
-        st.metric(f"El valor de la predicción para los valores ingresados es de: ",str(predict))
+        if(predValues != ""):
+            arrayValues = predValues.split(',')
+            print(arrayValues)
+            arrayIntValues = list(map(int, arrayValues))
+            print(arrayIntValues)
+            if(len(arrayIntValues) == size):
+                st.subheader("Visualización de las Tuplas")
+                st.dataframe(features)
+                st.subheader("Graficación")
+                st.pyplot(fig)
+                st.subheader("Predicción")
+                #Prediccion del Modelo 
+                predict = clf.predict([arrayIntValues])
+                
+                #predict = model.predict([[10, 10, 300, 0]])
+                st.metric(f"El valor de la predicción para los valores ingresados es de: ",str(predict), getSign(str(predict)))
+            else:
+                st.warning(f"Debe ingresar {size} valores para la predicción, separados por comas")
+        else:
+            st.warning("Debe ingresar los valores para la predicción")    
 
 
-
-
-        
+      
     
 
 
@@ -144,14 +148,11 @@ st.sidebar.title("Indice")
 st.sidebar.markdown("### [Carga del Archivo](#carga-del-archivo)")
 st.sidebar.markdown("- [Contenido del Archivo](#contenido-del-archivo)")
 st.sidebar.markdown("### [Parametrización](#parametrizaci-n)")
-st.sidebar.markdown("- [Variable Indepentiente (X)](#variable-independiente-x)")
-st.sidebar.markdown("- [Variable Depentiente (Y)](#variable-dependiente-y)")
-st.sidebar.markdown("- [Grado de la Función](#grado-de-la-funci-n)")
+st.sidebar.markdown("- [Variable Objetivo](#variable-objetivo)")
 st.sidebar.markdown("- [Valor de la Predicción](#valor-de-la-predicci-n)")
-st.sidebar.markdown("- [Colores de la Gráfica](#colores-de-la-gr-fica)")
+st.sidebar.markdown("### [Visualización de las Tuplas](#visualizaci-n-de-las-tuplas)")
 st.sidebar.markdown("### [Graficación](#graficaci-n)")
-st.sidebar.markdown("- [Datos de la Gráfica](#datos-de-la-gr-fica)")
-st.sidebar.markdown("### [Función de la Tendencia](#funci-n-de-la-tendencia)")
 st.sidebar.markdown("### [Predicción](#predicci-n)")
+
 
 

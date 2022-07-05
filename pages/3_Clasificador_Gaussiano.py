@@ -100,16 +100,6 @@ if(uploadFile is not None):
     model = GaussianNB()
     model.fit(features, field_y)
 
-    # Errores
-
-
-    #Prediccion
-    #TODO: Cambiar estooooooo
-    print(getSign(" 'P'"))
-    print(getSign(" 'p'"))
-    print(getSign("P"))
-    print(getSign("1"))
-    print(getSign("N"))
     
 
     #Obtenemos la imagen para mostrarla
