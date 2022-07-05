@@ -123,7 +123,7 @@ if(uploadFile is not None):
                 #Prediccion del Modelo 
 
                 predict = model.predict([arrayValues])
-                #predict = le.inverse_transform(predict)
+                #predictTransform = le.inverse_transform(predict)
                 
                 #predict = model.predict([[10, 10, 300, 0]])
                 st.metric(f"El valor de la predicción para los valores ingresados es de: ",str(predict), getSign(str(predict)))

@@ -70,7 +70,7 @@ if(uploadFile is not None):
     predValues = st.text_input(f"Ingrese los {size} valores de la predicción seguidos de una coma")
    
     #Transformar Data a Array
-    field_y = df[var_Object]
+    field_y = df[var_Object].tolist()
     df = df.drop([var_Object], axis = 1)
     col_match = [s for s in df.head() if "NO" in s]
     if len(col_match) == 1: df = df.drop(['NO'], axis = 1)
@@ -94,9 +94,10 @@ if(uploadFile is not None):
 
     # Agregamos el arreglo de tuplas a la lista
     features = list(zip(*fields_x))
+    label = le.fit_transform(field_y)
 
     #Entrenamos el modelo
-    clf = DecisionTreeClassifier().fit(features,field_y)
+    clf = DecisionTreeClassifier().fit(features,label)
     fig = plt.figure(figsize=(10,10))
     plt.style.use("seaborn")
     plot_tree(clf,filled = True)
@@ -115,17 +116,18 @@ if(uploadFile is not None):
     if st.button('Calcular'):
         if(predValues != ""):
             arrayValues = predValues.split(',')
+            arrayValues = le.fit_transform(arrayValues)
             print(arrayValues)
-            arrayIntValues = list(map(int, arrayValues))
-            print(arrayIntValues)
-            if(len(arrayIntValues) == size):
+            
+            if(len(arrayValues) == size):
                 st.subheader("Visualización de las Tuplas")
                 st.dataframe(features)
                 st.subheader("Graficación")
                 st.pyplot(fig)
                 st.subheader("Predicción")
                 #Prediccion del Modelo 
-                predict = clf.predict([arrayIntValues])
+                predict = clf.predict([arrayValues])
+                #predictTransform = le.inverse_transform(predict)
                 
                 #predict = model.predict([[10, 10, 300, 0]])
                 st.metric(f"El valor de la predicción para los valores ingresados es de: ",str(predict), getSign(str(predict)))
